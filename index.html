@@ -14,12 +14,12 @@
         const outputDiv = document.getElementById('output');
 
         verifyButton.addEventListener('click', () => {
-            const url = 'https://v3.football.api-sports.io/competitions';  // API URL
+            const url = 'https://v3.football.api-sports.io/competitions';  // Your API URL
             const options = {
                 method: 'GET',
                 headers: {
-                    'x-apisports-key': '36d901bfb525d0331203573f1106f777',  // Replace with your actual API key
-                    'x-apisports-host': 'v3.football.api-sports.io'
+                    'x-apisports-key': '0f5c7d5c9ff293c5204088c259c88526',  // Replace with your actual API key
+                    'Accept': 'application/json', // Specify that you accept JSON
                 }
             };
 
@@ -31,11 +31,9 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Output data in a pretty JSON format
                     outputDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
                 })
                 .catch(error => {
-                    // Handle errors and display them
                     outputDiv.innerHTML = 'Error fetching data: ' + error.message;
                 });
         });
