@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Verification</title>
+</head>
+<body>
+    <button id="verify-api">Verify API</button>
+    <div id="output"></div>
+
+    <script>
+        const verifyButton = document.getElementById('verify-api');
+        const outputDiv = document.getElementById('output');
+
+        verifyButton.addEventListener('click', () => {
+            const url = 'https://v3.football.api-sports.io/competitions';  // API URL
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-apisports-key': '36d901bfb525d0331203573f1106f777',  // Replace with your actual API key
+                    'x-apisports-host': 'v3.football.api-sports.io'
+                }
+            };
+
+            fetch(url, options)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Output data in a pretty JSON format
+                    outputDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    // Handle errors and display them
+                    outputDiv.innerHTML = 'Error fetching data: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>
